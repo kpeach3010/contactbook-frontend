@@ -108,19 +108,22 @@ export default {
       this.retrieveContacts();
       this.activeIndex = -1;
     },
-  },
-  async removeAllContacts() {
-    if (confirm("Bạn muốn xóa tất cả Liên hệ?")) {
-      try {
-        await ContactService.deleteAll();
-        this.refreshList();
-      } catch (error) {
-        console.log(error);
+    async removeAllContacts() {
+      if (confirm("Bạn muốn xóa tất cả Liên hệ?")) {
+        try {
+          await ContactService.deleteAll();
+          this.refreshList();
+        } catch (error) {
+          console.log(error);
+        }
       }
-    }
-  },
-  goToAddContact() {
-    this.$router.push({ name: "contact.add" });
+    },
+    goToAddContact() {
+      this.$router.push({ name: "contact.add" });
+    },
+    editContact(id) {
+      this.$router.push({ name: "contact.edit", params: { id } });
+    },
   },
   mounted() {
     this.refreshList();
